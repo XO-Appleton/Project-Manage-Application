@@ -1,0 +1,91 @@
+{
+    "system_announcement_id": 0,
+    "0": [
+        {
+            "announcement_id": 0,
+            "project_id": 0,
+            "creator": "Frank",
+            "date_created": "03-27-2021",
+            "title": "Potluck",
+            "body": "Potluck on Friday"
+        },
+        {
+            "announcement_id": 2,
+            "project_id": 0,
+            "creator": "Don",
+            "date_created": "03-17-2021",
+            "title": "Other food related announcement",
+            "body": "Food"
+        }
+    ],
+    "1": [
+        {
+            "announcement_id": 1,
+            "project_id": 1,
+            "creator": "Benjamin",
+            "date_created": "03-23-2021",
+            "title": "No Potluck",
+            "body": "No Potluck on Friday"
+        },
+        {
+            "announcement_id": 3,
+            "project_id": 1,
+            "creator": "Daniel",
+            "date_created": "02-16-2021",
+            "title": "What it do",
+            "body": "test announceemnt body"
+        }
+    ],
+    "2": [
+        {
+            "announcement_id": 3,
+            "project_id": 2,
+            "creator": "Daniel",
+            "date_created": "02-16-2021",
+            "title": "What it do",
+            "body": "test announceemnt body"
+        },
+        {
+            "announcement_id": 4,
+            "project_id": 2,
+            "creator": "Daniel",
+            "date_created": "02-17-2021",
+            "title": "What it doooo",
+            "body": "test announceemnt body 2"
+        },
+        {
+            "announcement_id": 2,
+            "project_id": 2,
+            "creator": "2",
+            "date_created": "2021-03-31",
+            "title": "2",
+            "body": "2"
+        },
+        {
+            "announcement_id": 2,
+            "project_id": 2,
+            "creator": "2",
+            "date_created": "2021-03-31",
+            "title": "2",
+            "body": "2"
+        }
+    ],
+    "3": [
+        {
+            "announcement_id": 3,
+            "project_id": 2,
+            "creator": "Daniel",
+            "date_created": "02-16-2021",
+            "title": "What it do",
+            "body": "test announceemnt body"
+        },
+        {
+            "announcement_id": 4,
+            "project_id": 2,
+            "creator": "Daniel",
+            "date_created": "02-17-2021",
+            "title": "What it doooo",
+            "body": "test announceemnt body 2"
+        }
+    ]
+}
