@@ -42,8 +42,3 @@ class AnnnouncementStorage:
                                    "w", encoding="utf-8")
         json.dump(announcements, ann_json_file_write, ensure_ascii=False)
         ann_json_file_write.close()
-
-
-'''
-when creating a new announcement, announcement master controller should control making the new id
-'''

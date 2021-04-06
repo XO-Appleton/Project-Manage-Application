@@ -1,5 +1,5 @@
 {
-    "system_announcement_id": 4,
+    "system_announcement_id": 6,
     "0": [
         {
             "announcement_id": 0,
@@ -68,6 +68,22 @@
             "date_created": "2021-03-31",
             "title": "2",
             "body": "2"
+        },
+        {
+            "announcement_id": 4,
+            "project_id": 2,
+            "creator": "Aaron",
+            "date_created": "2021-04-06",
+            "title": "Test announcement from main controller",
+            "body": "testinga dding an announcement from main controller"
+        },
+        {
+            "announcement_id": 5,
+            "project_id": 2,
+            "creator": "henry",
+            "date_created": "2021-04-06",
+            "title": "sdfdsf",
+            "body": "sdfdsfdsfdsf"
         }
     ],
     "3": [

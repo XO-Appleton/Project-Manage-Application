@@ -5,7 +5,7 @@ class AnnouncementBoard:
 
     def display_announcements(self, announcements):
         announcement_number = 1
-        print("Announcements for project: \n")
+        print("ANNOUNCEMENTS FOR PROJECT: \n")
         # takes the list of announcements and displays them
         for announcement in announcements:
             print(str(announcement_number) + ") Announcement posted by " + announcement["creator"] +
@@ -15,6 +15,6 @@ class AnnouncementBoard:
             announcement_number += 1
 
 
-x = AnnnouncementStorage()
-y = x.get_announcements(2)
-AnnouncementBoard().display_announcements(y)
+# x = AnnnouncementStorage()
+# y = x.get_announcements(2)
+# AnnouncementBoard().display_announcements(y)
