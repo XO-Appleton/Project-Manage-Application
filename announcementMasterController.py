@@ -2,6 +2,7 @@ from announcementStorage import AnnnouncementStorage
 from announcement import Announcement
 from announcementBoard import AnnouncementBoard
 from announcementSubmissionScreen import AnnouncementSubmissionScreen
+from User import User
 
 
 class AnnouncementMasterController:
@@ -12,10 +13,12 @@ class AnnouncementMasterController:
     def create_announcement(self):
         # looks for user input for if they want to go to announcement submission screen
         create_announcement = str(
-            input("Would you like to create an announcement? Yes or No \n"))
+            input("Would you like to create an announcement? Reply 'Yes' to create an announcement, 'No' to exit announcement screen. \n"))
 
         if create_announcement == "Yes" or create_announcement == "yes" or create_announcement == "y":
-            AnnouncementSubmissionScreen().display_form(self.project_id)
+            AnnouncementSubmissionScreen(
+                self.project_id, self.user).display_form(self.project_id)
+        # Need to add handling for if user says no (should exit announcement branch)
 
     def main(self):
 
@@ -25,8 +28,7 @@ class AnnouncementMasterController:
             self.create_announcement()
 
 
-# announcementMaster = AnnouncementMasterController()
-# announcementMaster.create_announcement()
+testUser = User("henry567")
 
-test = AnnouncementMasterController(2, "benjamin")
+test = AnnouncementMasterController(2, testUser)
 test.main()

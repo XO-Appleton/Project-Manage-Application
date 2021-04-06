@@ -1,15 +1,21 @@
 from datetime import date
 from announcementStorage import AnnnouncementStorage
 from announcement import Announcement
+from User import User
 
 #from announcementMasterController import AnnouncementMasterController
 
 
 class AnnouncementSubmissionScreen:
+    # convert code to work with submission init - creator and project id should be from constructor
+    def __init__(self, project_id, user):
+        self.project_id = project_id
+        self.user = user
 
     def display_form(self, project_id):
         print("\nANNOUNCEMENT SUBMISSION FORM: \n")
-        creator = str(input("Created by? "))  # switch to accepting user
+        # str(input("Created by? "))  # switch to accepting user
+        creator = self.user.login_name
         date_created = str(date.today())
         title = str(input("Title of announcement? \n"))
         body = str(input("Body of announcement? \n"))
