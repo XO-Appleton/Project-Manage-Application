@@ -7,9 +7,6 @@ class AnnouncementSubmissionScreen:
 
     def display_form(self):
         print("Announcement Submission \n")
-        # need to make globalized system for tracking announcement ID
-        announcement_id = int(input("Announcement ID? "))
-        # increase system announcement ID counter by 1
         project_id = int(input("Project ID? "))
         creator = str(input("Created by? "))
         date_created = str(date.today())
@@ -19,6 +16,7 @@ class AnnouncementSubmissionScreen:
             input("Would you like to post this announcement? Yes or No \n"))
 
         if confirm == "Yes" or confirm == "yes" or confirm == "y":
+            announcement_id = AnnnouncementStorage().get_announcementID()
             announcement = self.submit_announcement(
                 announcement_id, project_id, creator, date_created, title, body)
             AnnnouncementStorage().save_announcement(
