@@ -1,0 +1,48 @@
+{
+    "1": {
+        "5": {
+            "id": 5,
+            "first_name": "catherine",
+            "last_name": "c",
+            "details": "software eng III",
+            "private_details": "likes to bake"
+        },
+        "3": {
+            "id": 3,
+            "first_name": "ada",
+            "last_name": "lovelace",
+            "details": "mathematician",
+            "private_details": "London, England"
+        },
+        "6": {
+            "id": 6,
+            "first_name": "babbage",
+            "last_name": "charles",
+            "details": "university of cambridge",
+            "private_details": "pioneer in cs"
+        },
+        "4": {
+            "id": 4,
+            "first_name": "catherine",
+            "last_name": "chen",
+            "details": "info stuff",
+            "private_details": "private info"
+        },
+        "9": {
+            "id": 9,
+            "first_name": "hello",
+            "last_name": "world",
+            "details": "earth",
+            "private_details": "milky way"
+        }
+    },
+    "2": {
+        "8": {
+            "id": 8,
+            "first_name": "ridha",
+            "last_name": "khedri",
+            "details": "sfwr eng 3a04",
+            "private_details": "professor"
+        }
+    }
+}
