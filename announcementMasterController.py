@@ -19,7 +19,6 @@ class AnnouncementMasterController:
         if create_announcement == "Yes" or create_announcement == "yes" or create_announcement == "y":
             AnnouncementSubmissionScreen(
                 self.project_id, self.user).display_form(self.project_id)
-        # Need to add handling for if user says no (should exit announcement branch)
         else:
             self.exit_announcement()
 
@@ -33,9 +32,3 @@ class AnnouncementMasterController:
             announcements_list = AnnnouncementStorage().get_announcements(self.project_id)
             AnnouncementBoard().display_announcements(announcements_list)
             self.create_announcement()
-
-
-testUser = User("waterbottle")
-
-test = AnnouncementMasterController(0, testUser)
-test.main()

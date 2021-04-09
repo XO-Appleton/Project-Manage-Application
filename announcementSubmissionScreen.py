@@ -18,9 +18,9 @@ class AnnouncementSubmissionScreen:
         creator = self.user.login_name
         date_created = str(date.today())
         title = str(input("Title of announcement? \n"))
-        body = str(input("Body of announcement? \n"))
+        body = str(input("\nBody of announcement? \n"))
         confirm = str(
-            input("Would you like to post this announcement? Yes or No \n"))
+            input("\nWould you like to post this announcement? Yes or No \n"))
 
         if confirm == "Yes" or confirm == "yes" or confirm == "y":
             announcement_id = AnnnouncementStorage().get_announcementID()
@@ -28,16 +28,15 @@ class AnnouncementSubmissionScreen:
                 announcement_id, project_id, creator, date_created, title, body)
             AnnnouncementStorage().save_announcement(
                 project_id, announcement.announcement_dict)
-            print("Announcement submitted! \n")
+            print("\nAnnouncement submitted! \n")
 
         else:
             new_confirm = str(input(
-                "Announcement not submitted. Would you like to submit a new announcement? Yes or No \n"))
+                "\nAnnouncement not submitted. Would you like to submit a new announcement? Yes or No \n"))
             if new_confirm == "Yes" or new_confirm == "yes" or new_confirm == "y":
                 self.display_form()
             else:
-                print("Thank you!")
-                # take user back to announcement board
+                print("\nThank you!\n")
 
     def submit_announcement(self, announcement_id, project_id, creator, date_created, title, body):
         return Announcement(announcement_id, project_id,
