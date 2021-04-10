@@ -1,6 +1,6 @@
 from datetime import date
-from announcementStorage import AnnnouncementStorage
-from announcement import Announcement
+from AnnouncementStorage import AnnnouncementStorage
+from Announcement import Announcement
 from User import User
 
 

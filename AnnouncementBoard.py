@@ -1,4 +1,4 @@
-from announcementStorage import AnnnouncementStorage
+from AnnouncementStorage import AnnnouncementStorage
 
 
 class AnnouncementBoard:

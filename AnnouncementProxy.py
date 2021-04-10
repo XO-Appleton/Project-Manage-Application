@@ -1,4 +1,4 @@
-from announcementMasterController import AnnouncementMasterController
+from AnnouncementMasterController import AnnouncementMasterController
 from User import User
 
 # Starts the announcement branch.
@@ -19,6 +19,7 @@ class AnnouncementProxy:
         AnnouncementMasterController(project_id, user).main()
 
 
-testUser = User("Test_User")
-test = AnnouncementProxy()
-test.start_branch(2, testUser)
+if __name__ == "__main__":
+    testUser = User("Benjamin_Moore")
+    test = AnnouncementProxy()
+    test.start_branch(2, testUser)

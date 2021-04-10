@@ -1,7 +1,7 @@
-from announcementStorage import AnnnouncementStorage
-from announcement import Announcement
-from announcementBoard import AnnouncementBoard
-from announcementSubmissionScreen import AnnouncementSubmissionScreen
+from AnnouncementStorage import AnnnouncementStorage
+from Announcement import Announcement
+from AnnouncementBoard import AnnouncementBoard
+from AnnouncementSubmissionScreen import AnnouncementSubmissionScreen
 from User import User
 
 
