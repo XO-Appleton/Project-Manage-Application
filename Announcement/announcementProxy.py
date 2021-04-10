@@ -19,6 +19,6 @@ class AnnouncementProxy:
         AnnouncementMasterController(project_id, user).main()
 
 
-# testUser = User("Test_User")
-# test = AnnouncementProxy()
-# test.start_branch(5, testUser)
+testUser = User("Test_User")
+test = AnnouncementProxy()
+test.start_branch(5, testUser)
