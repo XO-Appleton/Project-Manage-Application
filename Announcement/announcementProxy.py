@@ -21,4 +21,4 @@ class AnnouncementProxy:
 
 testUser = User("Test_User")
 test = AnnouncementProxy()
-test.start_branch(5, testUser)
+test.start_branch(2, testUser)

@@ -26,7 +26,10 @@ class AnnnouncementStorage:
         announcements = json.load(ann_json_file_read)
         ann_json_file_read.close()
 
-        return announcements[str(project_id)]
+        try:
+            return announcements[str(project_id)]
+        except:
+            pass
 
     # Save an announcement under a specified project
     def save_announcement(self, project_id, announcement):
