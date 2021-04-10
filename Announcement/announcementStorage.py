@@ -2,7 +2,7 @@ import json
 
 
 class AnnnouncementStorage:
-
+    # When an announcement is submitted, this method provides it's ID
     def get_announcementID(self):
         ann_json_file_read = open(
             "../ann_storage/ann_storage.json", "r")
@@ -19,6 +19,7 @@ class AnnnouncementStorage:
 
         return system_announcement_id
 
+    # Retrieve the announcements for a project from storage
     def get_announcements(self, project_id):
         ann_json_file_read = open(
             "../ann_storage/ann_storage.json", "r")
@@ -27,6 +28,7 @@ class AnnnouncementStorage:
 
         return announcements[str(project_id)]
 
+    # Save an announcement under a specified project
     def save_announcement(self, project_id, announcement):
 
         ann_json_file_read = open("../ann_storage/ann_storage.json", "r")

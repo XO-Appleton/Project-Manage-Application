@@ -2,7 +2,7 @@ from announcementStorage import AnnnouncementStorage
 
 
 class AnnouncementBoard:
-
+    # Displays a list of announcements
     def display_announcements(self, announcements):
         announcement_number = 1
         print("ANNOUNCEMENTS FOR PROJECT: \n")
