@@ -5,10 +5,12 @@ from sqlite3 import Error
 import sys
 sys.path.append(".")
 from IssueTrackingSystem import Issue
+from IssueReplyTrackingSystem import Reply
 from IssueTrackingSystem import IssueTrackingSystem
 from IssueListScreen import IssueListScreen
 from IssueCreationScreen import IssueCreationScreen
 from IssueEditingScreen import IssueEditingScreen
+from IssueReplyTrackingSystem import IssueReplyTrackingSystem
 
 class IssueController:
     def __init__(self, uid, pid):
@@ -19,7 +21,9 @@ class IssueController:
     def goto_list_screen(self):
         while(True):
             issue_list = IssueTrackingSystem.get_data(self.conn, self.pid)
-            command = IssueListScreen.display_List(issue_list)
+            reply_list = IssueReplyTrackingSystem.get_data(self.conn, self.pid)
+
+            command = IssueListScreen.display_List(issue_list, reply_list)
 
             if(command == "open"):
                 self.open()
@@ -29,6 +33,9 @@ class IssueController:
                 print('')
             elif(command == "close"):
                 self.close()
+                print('')
+            elif(command == "reply"):
+                self.reply()
                 print('')
             else:
                 print('')
@@ -58,7 +65,11 @@ class IssueController:
         IssueTrackingSystem.delete_issue(self.conn, iid, self.pid)
         return
 
-if __name__ == "__main__":
-    pid = 1
-    uid = 1
-    IssueController(uid, pid)
+    def reply(self):
+        iid = input("Enter issue number of the issue that you wish to reply to: ")
+        rid = IssueReplyTrackingSystem.num_replies(self.conn, self.pid) + 1
+        reply = IssueListScreen.get_reply()
+        
+        new_reply = Reply(self.uid, iid, reply, rid)
+        IssueReplyTrackingSystem.add_reply(self.conn, new_reply, self.pid)
+        return
