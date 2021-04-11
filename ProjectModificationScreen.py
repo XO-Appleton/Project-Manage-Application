@@ -37,3 +37,7 @@ class ProjectModificationScreen:
                 self.project_on_modify.member.pop(i)
                 break
         return self.project_on_modify
+
+    def toggle_completion(self) -> Project:
+        self.project_on_modify.completed = not self.project_on_modify.completed
+        return self.project_on_modify
