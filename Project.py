@@ -1,3 +1,5 @@
+from User import User
+
 class Project:
 
     __global_uid_count = 0
