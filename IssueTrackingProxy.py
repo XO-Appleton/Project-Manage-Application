@@ -1,0 +1,2 @@
+class IssueTrackingProxy:
+    pass

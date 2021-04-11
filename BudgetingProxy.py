@@ -1,0 +1,2 @@
+class BudgetingProxy:
+    pass
