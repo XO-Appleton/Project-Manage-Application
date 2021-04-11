@@ -6,16 +6,22 @@ class LoginScreen:
         pass
 
     def display_login_form(self):
-        pass
+        print("Welcome to login interface!")
 
     def get_decision(self) -> LoginOpEnum:
-        pass
+        choice = input("Please choose your operation [LOGIN/REGISTER]: ")
+        if choice == "LOGIN":
+            return LoginOpEnum.LOGIN
+        if choice == "REGISTER":
+            return LoginOpEnum.REGISTER
+        print("Did not recognize your choice, please try again")
+        return self.get_decision()
 
     def get_login_name_input(self) -> str:
-        pass
+        return input("USER NAME:")
 
     def get_password_input(self) -> str:
-        pass
+        return input("PASSWORD:")
 
     def failure(self):
-        pass
+        print("Login failed!")
