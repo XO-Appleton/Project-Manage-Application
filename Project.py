@@ -2,11 +2,8 @@ from User import User
 
 class Project:
 
-    __global_uid_count = 0
-
     def __init__(self):
-        self.uid = self.__global_uid_count
-        self.__global_uid_count += 1
+        self.uid = None
         self.name = None
         self.date_created = None
         self.due_date = None

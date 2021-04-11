@@ -1,10 +1,7 @@
 class User:
 
-    __global_id_count = 0
-
     def __init__(self):
-        self.user_ID = self.__global_id_count
-        self.__global_id_count += 1
+        self.user_ID = None
         self.first_name = None
         self.last_name = None
         self.password = None
