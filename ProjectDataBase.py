@@ -1,6 +1,7 @@
 from User import User
 from Project import Project
 
+
 class ProjectDataBase:
 
     def add_project(self, project: Project):
@@ -19,5 +20,5 @@ class ProjectDataBase:
         pass
 
     @staticmethod
-    def get_instance() -> ProjectDataBase:
+    def get_instance():
         pass
