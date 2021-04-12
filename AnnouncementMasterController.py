@@ -1,4 +1,4 @@
-from AnnouncementStorage import AnnnouncementStorage
+from AnnouncementStorage import AnnouncementStorage
 from Announcement import Announcement
 from AnnouncementBoard import AnnouncementBoard
 from AnnouncementSubmissionScreen import AnnouncementSubmissionScreen
@@ -35,6 +35,6 @@ class AnnouncementMasterController:
     # Main function of master controller runs the announcement branch
     def main(self):
         while(self.active):
-            announcements_list = AnnnouncementStorage().get_announcements(self.project_id)
+            announcements_list = AnnouncementStorage().get_announcements(self.project_id)
             AnnouncementBoard().display_announcements(announcements_list)
             self.create_announcement()

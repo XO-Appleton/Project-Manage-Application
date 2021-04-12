@@ -1,5 +1,5 @@
 from datetime import date
-from AnnouncementStorage import AnnnouncementStorage
+from AnnouncementStorage import AnnouncementStorage
 from Announcement import Announcement
 from User import User
 
@@ -20,17 +20,17 @@ class AnnouncementSubmissionScreen:
         creator = self.user.login_name
         date_created = str(date.today())
         title = str(input("Title of announcement? \n"))
-        body = str(input("\nBody of announcement? \n"))
+        body = str(input("\nBody of announcement? (Optional) \n"))
 
         # If user confirms they would like to post the announcement, it will be put in storage
         confirm = str(
             input("\nWould you like to post this announcement? Yes or No \n"))
 
         if confirm == "Yes" or confirm == "yes" or confirm == "y":
-            announcement_id = AnnnouncementStorage().get_announcementID()
+            announcement_id = AnnouncementStorage().get_announcementID()
             announcement = self.submit_announcement(
                 announcement_id, project_id, creator, date_created, title, body)
-            AnnnouncementStorage().save_announcement(
+            AnnouncementStorage().save_announcement(
                 project_id, announcement.announcement_dict)
             print("\nAnnouncement submitted! \n")
 
