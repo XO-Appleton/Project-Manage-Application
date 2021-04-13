@@ -1,0 +1,2 @@
+class ProjectModificationCoordinator:
+    pass
