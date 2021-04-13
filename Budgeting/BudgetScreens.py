@@ -133,6 +133,7 @@ class BudgetPlanModificationScreen(Screen):
     def capture_input(self) -> BudgetPlan:
         #This is used for creation of objects as well.
         try:
+            print('Starting process... Press Ctrl+C to cancel')
             new_title = input('Enter the title: ')
             new_description = input('Enter the description: ')
             new_budget = int(input('Enter the expect budget: '))
@@ -178,7 +179,8 @@ class ExpenseReportModificationScreen(Screen):
             
         
     def capture_input(self, plan_id):
-        try:    
+        try:
+            print('Starting process... Press Ctrl+C to cancel')    
             new_title = input('Enter the title: ')
             new_description = input('Enter the description: ')
             new_cost = int(input('Enter the cost: '))
@@ -217,6 +219,7 @@ class FundRequestModificationScreen(Screen):
         
     def capture_input(self, plan_id):
         try:
+            print('Starting process... Press Ctrl+C to cancel')
             new_title = input('Enter the title: ')
             new_description = input('Enter the description: ')
             new_amount = int(input('Enter the amount: '))
