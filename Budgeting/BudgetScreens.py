@@ -8,22 +8,22 @@ class Screen:
         self.project_id = project_id
 
     def capture_event(self):
-        #Available operations and file types
-        cmd_op = ['VIEW', 'CREATE', 'DELETE', 'EDIT', 'REVIEW', 'BACK']
-        file_op = ['PLAN', 'REPORT', 'REQUEST', 'ALL']
-
         try:
             #Record the user command and send it to caller
             while True:
                 print('Please enter a command: ')
                 cmd = input('Format: view/create/delete/edit/review/back (plan/report/request/all fileID)[optional]').upper().split(' ')
+                if cmd[-1] == '':
+                    cmd[-1] = '0'
+                while len(cmd) < 3:
+                    cmd.append('0')
                 return cmd
 
         except:
             return
             
 
-    def print_BP(self, plan:BudgetPlan): 
+    def _print_BP(self, plan:BudgetPlan): 
         #Print a single Budget Plan
         print('------------------------------------------------------------------------')
         print('Budget Plan ID: ', str(plan.plan_id), '\n')
@@ -34,7 +34,7 @@ class Screen:
         print('Available Fund: ', str(plan.avaliable_fund), '\n')
         print('------------------------------------------------------------------------')
 
-    def print_ER(self, report:ExpenseReport):
+    def _print_ER(self, report:ExpenseReport):
         #Print a single Expense Report
         print('------------------------------------------------------------------------')
         print('Report ID: ', str(report.report_id), '\n')
@@ -44,7 +44,7 @@ class Screen:
         print('Cost: ', str(report.cost), '\n')
         print('------------------------------------------------------------------------')
 
-    def print_FR(self, request:FundRequest):
+    def _print_FR(self, request:FundRequest):
         #Print a single Fund Request
         print('------------------------------------------------------------------------')
         print('Request ID: ', str(request.request_id), '\n')
@@ -80,21 +80,21 @@ class BudgetPlanViewScreen(Screen):
 
     def display_plan(self, plan: BudgetPlan):
         #View a Budget Plan's info along with all the Expense Reports and Fund Requests under it
-        self.print_BP(plan)
+        self._print_BP(plan)
         print('Expense Reports under the plan:\n')
         for report in plan.reports:
-            self.print_ER(report)
+            self._print_ER(report)
         print('Fund requests under the plan:\n')
         for request in plan.requests:
-            self.print_FR(request)
+            self._print_FR(request)
         return
 
     def display_report(self, report: ExpenseReport):
-        self.print_ER(report)
+        self._print_ER(report)
         return
 
     def display_request(self, request: FundRequest):
-        self.print_FR(request)
+        self._print_FR(request)
         return
     
 
@@ -106,7 +106,7 @@ class BudgetPlanModificationScreen(Screen):
     def display(self, plan: BudgetPlan):
         #Displays the modifying Budget Plan then do the editing Process
         print('Current Plan:')
-        self.print_BP(plan)
+        self._print_BP(plan)
         try:
             dummy_plan = self.capture_input()
             dummy_plan.plan_id = plan.plan_id
@@ -116,7 +116,7 @@ class BudgetPlanModificationScreen(Screen):
 
             #Confirm changes, if not return the original plan
             print('Preview of the report:')
-            self.print_BP(dummy_plan)
+            self._print_BP(dummy_plan)
             submit = input('Would you like to save the changes? (y/n)')
             if submit == 'y':
                 plan = dummy_plan
@@ -161,16 +161,15 @@ class ExpenseReportModificationScreen(Screen):
             for rpt in plan.reports:
                 if rpt.report_id == report_id:
                     print('Current Report:')
-                    self.print_ER(rpt)
+                    self._print_ER(rpt)
                     dummy_report = self.capture_input(plan.plan_id)
                     dummy_report.report_id = rpt.report_id
                     print('Preview of the report:')
-                    self.print_ER(dummy_report)
+                    self._print_ER(dummy_report)
                     submit = input('Would you like to save the changes? (y/n)')
                     if submit == 'y':
                         rpt = dummy_report
                     return plan
-            print('Sorry, there is no Expense Report matching the id.')
             return plan
         except KeyboardInterrupt:
             raise KeyboardInterrupt
@@ -201,16 +200,15 @@ class FundRequestModificationScreen(Screen):
             for rqt in plan.requests:
                 if rqt.request_id == request_id:
                     print('Current Request:')
-                    self.print_FR(rqt)
+                    self._print_FR(rqt)
                     dummy_request = self.capture_input(plan.plan_id)
                     dummy_request.request_id = rqt.request_id
                     print('Preview of the request:')
-                    self.print_FR(dummy_request)
+                    self._print_FR(dummy_request)
                     submit = input('Would you like to save the changes? (y/n)')
                     if submit == 'y':
                         rqt = dummy_request
                     return plan
-                print('Sorry, there is no Fund Request matching the id.')
                 return plan
         except KeyboardInterrupt:
             raise KeyboardInterrupt
@@ -228,9 +226,9 @@ class FundRequestModificationScreen(Screen):
         except:
             print('Something went wrong. Pls check ur input!')
 
-    def review(self, plan: BudgetPlan, request_id):
+    def _review(self, plan: BudgetPlan, request_id):
         #The admin can review a fund request and approve it or deny it
-        plan.review(request_id, self.is_admin)
+        plan._review(request_id, self.is_admin)
 
 
 

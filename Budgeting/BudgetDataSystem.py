@@ -44,9 +44,10 @@ class BudgetDataSystem:
         return [plan for plan in self.plans if plan.project_id == project_id]
 
     def delete_project(self, project_id):
-        for plan in self.plans:
+        for plan in self.find_project(project_id):
             if plan.project_id == project_id:
-                self.delete_plan(plan)
+                self.delete_plan(plan.plan_id)
+        
 
     def find_plan(self, plan_id) -> BudgetPlan:
         for plan in self.plans:
@@ -63,11 +64,12 @@ class BudgetDataSystem:
 
     def delete_plan(self, plan_id):
         #Upon deleting a budget plan, all the reports and requests get deleted as well
-        for report in self.find_plan(plan_id).reports:
+        plan = self.find_plan(plan_id)
+        for report in plan.reports:
             self.delete_report(plan_id, report.report_id)
-        for request in self.find_plan(plan_id).requests:
+        for request in plan.requests:
             self.delete_request(plan_id, request.request_id)
-        self.plans.remove(self.find_plan(plan_id))
+        self.plans.remove(plan)
 
     def add_report(self, report: ExpenseReport):
         self.find_plan(report.plan_id).add_report(report)

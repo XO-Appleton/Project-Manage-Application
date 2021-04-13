@@ -52,16 +52,14 @@ class BudgetPlan:
             if report.report_id == rpt_id:
                self.reports.remove(report)
                self.avaliable_fund += report.cost
-               print('Report has been removed!')
 
     def delete_request(self, rqt_id):
         #deleting a fund request from a budget plan
         for request in self.requests:
             if request.request_id == rqt_id:
                self.requests.remove(request)
-               print('Request has been removed!')
 
-    def review(self, request_id, is_admin):
+    def _review(self, request_id, is_admin):
         #reviewing a fund request (only admin)
         #upon approval, the requested amount will be added to the available fund of the budget plan
         if is_admin == False:
