@@ -13,8 +13,8 @@ from IssueEditingScreen import IssueEditingScreen
 from IssueReplyTrackingSystem import IssueReplyTrackingSystem
 
 class IssueController:
-    def __init__(self, uid, pid):
-        self.uid = uid
+    def __init__(self, pid, user):
+        self.uid = user.get_user_ID()
         self.pid = pid
         self.conn = IssueTrackingSystem.sql_connect()
         self.goto_list_screen()
