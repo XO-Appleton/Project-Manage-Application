@@ -8,9 +8,14 @@ class ProjectCreationScreen:
         project = Project()
         project.name = input("PROJECT NAME:")
         project.date_created = date.today()
-        due_year = int(input("YEAR DUE:"))
-        due_month = int(input("MONTH DUE:"))
-        due_day = int(input("DAY DUE:"))
+        while True:
+            try:
+                due_year = int(input("YEAR DUE:"))
+                due_month = int(input("MONTH DUE:"))
+                due_day = int(input("DAY DUE:"))
+                break
+            except ValueError:
+                pass
         project.due_date = date(due_year, due_month, due_day)
         project.admin = user
         project.member = []
