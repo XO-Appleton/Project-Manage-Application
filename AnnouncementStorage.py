@@ -4,7 +4,7 @@ from os.path import *
 
 class AnnouncementStorage:
 
-    storage_file_path = "./ann_storage/announcement_storage.json"
+    storage_file_path = "./announcement_storage.json"
 
     # When an announcement is submitted, this method provides it's ID
     def get_announcementID(self):
