@@ -27,6 +27,7 @@ class MainController:
     def main(self):
         self.initialize()
         self.current_user = self.lc.start_login_process()
+        print("welcome,", self.current_user.first_name, self.current_user.last_name)
         self.involved_projects = self.pdb.get_user_projects(self.current_user)
 
         keep_running = True
