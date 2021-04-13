@@ -23,4 +23,4 @@ class AnnouncementProxy:
 if __name__ == "__main__":
     testUser = User("Benjamin_Moore")
     test = AnnouncementProxy()
-    test.start_branch(2, testUser)
+    test.start_branch(3, testUser)
