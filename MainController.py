@@ -54,8 +54,9 @@ class MainController:
             self.involved_projects = self.pdb.get_user_projects(self.current_user)
 
     def terminate(self):
-        self.cdb.save_database()
-        self.pdb.save_database()
+        pass
+        # self.cdb.save_database()
+        # self.pdb.save_database()
 
 
 if __name__ == "__main__":

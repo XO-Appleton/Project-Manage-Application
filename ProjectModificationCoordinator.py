@@ -12,7 +12,8 @@ class ProjectModificationCoordinator:
 
     def modify_project(self, user: User, project:Project):
         screen = ProjectModificationScreen()
-        self.current_project = screen.initiate_process(self.current_project)
+        self.current_project = project
+        screen.initiate_process(self.current_project)
         enum_val = screen.get_mod_type()
         if enum_val == ModEnum.ADD_USER:
             user = User()

@@ -7,6 +7,7 @@ class ProjectsMainPage:
 
     def show_projects(self, projects: list):
         self.currently_showing = projects
+        print("Involved Projects:")
         for project in projects:
             print("%d\t%s" % (project.get_uid(), project.name))
 

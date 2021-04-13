@@ -6,13 +6,20 @@ from Project import Project
 
 class ProjectCreationCoordinator:
 
-    def __init__(self, user):
-        self.user = user
-        self.current_project = None
-        self.active = True
+    def __init__(self):
+        pass
+        # self.user = user
+        # self.current_project = None
+        # self.active = True
 
     def create_new_project(self, user: User):
         self.current_project = ProjectCreationScreen().display_form(user)
+        if self.validate_project():
+            print("Project successfully created!")
+            self.add_to_system(self.current_project)
+        else:
+            print("Creation process failed")
+        return
 
     def validate_project(self):
         check_project = self.current_project.__dict__
@@ -33,7 +40,7 @@ class ProjectCreationCoordinator:
         return True
 
     def add_to_system(self, project: Project):
-        ProjectDataBase().add_project(project)
+        ProjectDataBase.get_instance().add_project(project)
 
     def main(self):
         while(self.active):

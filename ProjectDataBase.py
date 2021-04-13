@@ -46,28 +46,34 @@ class ProjectDataBase:
                 return self.project_records[i]
 
     def get_user_projects(self, user: User) -> list:
-        return [p for p in self.project_records if user.get_user_ID() in [u.get_user_ID() for u in p.member] or user.get_user_ID() == p.admin.get_user_ID()]
+        return [
+            p for p in self.project_records if user.get_user_ID() in [
+                u.get_user_ID() for u in p.member] or user.get_user_ID() == p.admin.get_user_ID()]
 
     def load_database(self):
         self.project_records = []
         if not isfile(self.__json_dump_file_name):
-            with open(self.__json_dump_file_name, "w") as fp:
-                json.dump({"projects_count": 0, "json_records": []}, fp)
-        
-        with open(self.__json_dump_file_name) as fp:
-            raw_str = fp.read()
-            raw = json.loads(raw_str)
+            print("Did not find db file, creating one...")
+            fp = open(self.__json_dump_file_name, "w")
+            json.dump({"projects_count": 0, "json_records": []}, fp)
+            fp.close()
+
+        fp = open(self.__json_dump_file_name)
+        raw_str = fp.read()
+        fp.close()
+        raw = json.loads(raw_str)
         self.project_count = raw["projects_count"]
         json_records = raw["json_records"]
         for d in json_records:
             p = Project()
             p.uid = d["uid"]
             p.name = d["name"]
-            p.date_created = date(d["c_year"],d["c_month"],d["c_day"])
-            p.due_date = date(d["d_year"],d["d_month"],d["d_day"])
+            p.date_created = date(d["c_year"], d["c_month"], d["c_day"])
+            p.due_date = date(d["d_year"], d["d_month"], d["d_day"])
             cdb = CredentialDatabase.get_instance()
-            p.member = [cdb.get_user_from_id(each_id) for each_id in d["member"]]
-            p.admin.user_ID = cdb.get_user_from_id(d["admin"])
+            p.member = [cdb.get_user_from_id(each_id)
+                        for each_id in d["member"]]
+            p.admin = cdb.get_user_from_id(d["admin"])
             p.completed = d["completed"]
             p.description = d["description"]
             self.project_records.append(p)
@@ -85,16 +91,17 @@ class ProjectDataBase:
             d["d_month"] = p.due_date.month
             d["d_day"] = p.due_date.day
             d["member"] = [u.user_ID for u in p.member]
-            d["admin"] = p.admin.user_ID
+            d["admin"] = p.get_admin().get_user_ID()
             d["completed"] = p.completed
             d["description"] = p.description
             json_records.append(d)
         with open(self.__json_dump_file_name, "w") as fp:
-            json.dump({"projects_count": self.project_count, "json_records":json_records}, fp)
+            json.dump({"projects_count": self.project_count,
+                      "json_records": json_records}, fp)
 
     @staticmethod
     def get_instance() -> ProjectDataBase:
-        if ProjectDataBase.__instance == None:
+        if ProjectDataBase.__instance is None:
             ProjectDataBase.__instance = ProjectDataBase()
         return ProjectDataBase.__instance
 
@@ -104,8 +111,9 @@ class ProjectDataBase:
 
 
 if __name__ == "__main__":
-    import os
-    os.remove(ProjectDataBase.get_dump_file_name())
+    import os, os.path
+    if os.path.isfile(ProjectDataBase.get_dump_file_name()):
+        os.remove(ProjectDataBase.get_dump_file_name())
     pdb = ProjectDataBase.get_instance()
     cdb = CredentialDatabase.get_instance()
     u1 = User()

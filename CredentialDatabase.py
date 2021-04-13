@@ -45,6 +45,7 @@ class CredentialDatabase:
         user_records = raw["records"]
         for record in user_records:
             u = User()
+            u.user_ID = record["user_ID"]
             u.first_name = record["first_name"]
             u.last_name = record["last_name"]
             u.login_name = record["login_name"]
@@ -67,7 +68,8 @@ class CredentialDatabase:
 
 if __name__ == "__main__":
     import os
-    os.remove(CredentialDatabase.get_dump_file_name())
+    if os.path.isfile(CredentialDatabase.get_dump_file_name()):
+        os.remove(CredentialDatabase.get_dump_file_name())
     db = CredentialDatabase.get_instance()
 
     u = User()
