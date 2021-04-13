@@ -1,7 +1,14 @@
 import json
 from Contact import Contact
+import os
 
 class ContactDatabase:
+    
+    def __init__(self):
+        if not os.path.exists('contact_database.json'):
+            with open('contact_database.json', 'w') as outfile:
+                json.dump({}, outfile)
+
 
     def add_contact(self, project_id, contact):
         db = open("contact_database.json", "r")
@@ -56,3 +63,6 @@ class ContactDatabase:
         db = open("contact_database.json", "w+")
         db.write(json.dumps(contact_full_list, indent=4))
         db.close()
+
+if __name__ == "__main__":
+    test = ContactDatabase()

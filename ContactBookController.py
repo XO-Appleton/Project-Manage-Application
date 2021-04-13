@@ -12,7 +12,7 @@ class ContactBookController:
 
     def main(self):
         contact_list = ContactDatabase().get_contacts(self.project_id)
-        main_screen = MainContactScreen(contact_list)
+        main_screen = MainContactScreen(contact_list, self.user)
 
         while True:
             main_screen.display()
@@ -26,19 +26,19 @@ class ContactBookController:
                 self.create_contact()
             elif decision == 'sort':
                 sorted_list = self.sort_contact_list()
-                main_screen = MainContactScreen(sorted_list)
+                main_screen = MainContactScreen(sorted_list, self.user)
             elif decision == 'search':
                 search_name = input("Enter a first name to search for contacts: ")
                 search_list = self.search_contact(search_name)
-                search_screen = MainContactScreen(search_list)
-                main_screen = MainContactScreen(search_list)
+                search_screen = MainContactScreen(search_list, self.user)
+                main_screen = MainContactScreen(search_list, self.user)
             elif decision == 'exit':
                 return
 
             # refresh the contact list in case it gets updated
             if decision != 'sort' and decision != 'search':
                 contact_list = ContactDatabase().get_contacts(self.project_id)
-                main_screen = MainContactScreen(contact_list)
+                main_screen = MainContactScreen(contact_list, self.user)
 
     def create_contact(self):
         CreateContactScreen().display_form()
