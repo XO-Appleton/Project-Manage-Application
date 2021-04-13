@@ -7,6 +7,7 @@ from User import User
 from Project import Project
 from CredentialDatabase import CredentialDatabase
 
+
 class ProjectDataBase:
 
     __json_dump_file_name = "core_project_db.json"
