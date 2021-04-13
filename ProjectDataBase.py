@@ -1,3 +1,4 @@
+from __future__ import annotations
 import json
 from datetime import date
 from os.path import *
@@ -91,7 +92,7 @@ class ProjectDataBase:
             json.dump({"projects_count": self.project_count, "json_records":json_records}, fp)
 
     @staticmethod
-    def get_instance():
+    def get_instance() -> ProjectDataBase:
         if ProjectDataBase.__instance == None:
             ProjectDataBase.__instance = ProjectDataBase()
         return ProjectDataBase.__instance

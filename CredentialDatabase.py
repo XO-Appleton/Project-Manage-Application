@@ -1,3 +1,4 @@
+from __future__ import annotations
 import json
 from os.path import *
 
@@ -59,7 +60,7 @@ class CredentialDatabase:
         return CredentialDatabase.__json_dump_file_name
 
     @staticmethod
-    def get_instance():
+    def get_instance() -> CredentialDatabase:
         if CredentialDatabase.__instance == None:
             CredentialDatabase.__instance = CredentialDatabase()
         return CredentialDatabase.__instance
