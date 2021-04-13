@@ -30,7 +30,7 @@ class Screen:
         print('Project ID: ', str(plan.project_id), '\n')
         print('Title: \n', plan.Title, '\n')
         print('Description: \n', plan.Description, '\n')
-        print('Expect Budget: ', str(plan.expect_budget), '\n')
+        print('Budget: ', str(plan.expect_budget), '\n')
         print('Available Fund: ', str(plan.avaliable_fund), '\n')
         print('------------------------------------------------------------------------')
 
