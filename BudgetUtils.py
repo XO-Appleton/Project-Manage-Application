@@ -29,10 +29,6 @@ class BudgetPlan:
     def add_report(self,report):
         #adding an expense report under a budget plan
         #An expense report represents a spense happened, so upon recording the available fund reduces by the cost.
-
-        if self.avaliable_fund < report.cost:
-            print('Sorry the cost is too high')
-            return
         report.plan_id = self.plan_id
         self.reports.append(report)
         self.avaliable_fund -= report.cost

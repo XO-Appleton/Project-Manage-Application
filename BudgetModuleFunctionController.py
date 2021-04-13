@@ -6,8 +6,8 @@ from BudgetingProxy import *
 class BudgetModuleFunctionController:
 
     def __init__(self, project, user):
-        self.project_id = project.get_project_uid()
-        self.is_admin = user.get_uid() == project.get_admin().get_user_id()
+        self.project_id = project.get_uid()
+        self.is_admin = user.get_user_ID() == project.get_admin().get_user_ID()
         self.user = user
         #Available operations and file types
         self.cmd_op = ['VIEW', 'CREATE', 'DELETE', 'EDIT', 'REVIEW', 'BACK']
@@ -215,42 +215,5 @@ class BudgetModuleFunctionController:
 
 #Test
 if __name__=='__main__':
-    # bp1 = BudgetPlan(1, 'first bp', 'this is the first bp.', 100)
-    # ex1 = ExpenseReport(1, 'first ER under bp1', 'this is the first ER under BP 1', 80)
-    # fr1 = FundRequest(1, 'Gif money ovo', 'gimme 100 bucks man', 100)
-    # bp2 = BudgetPlan(1, 'second bp', 'this is the second bp :)', 40)
-
-    # BudgetPlanViewScreen(True).display(bp1)
-    # bp1.add_request(fr1)
-    # BudgetPlanViewScreen(True).display(bp1)
-
-    # FundRequestModificationScreen(True).review(bp1,1)
-    # BudgetPlanViewScreen(True).display(bp1)
-
-    # bp1.add_report(ex1)
-    # BudgetPlanViewScreen(True).display(bp1)
-
-    # BudgetPlanModificationScreen().display(bp1)
-    # BudgetPlanViewScreen().display(bp1)
-
-    # ctl = BudgetModuleFunctionController(1, 0)
-
-# class a:
-#     def __init__(self) -> None:
-#         self.value = ['abcdefg', 'hijklmn']
-
-# class b:
-#     def __init__(self,obj):
-#         self.obj = obj
-#     def func(self, test: a):
-#         for i in test.value:
-#             if i == 'abcdefg':
-#                 test.value.remove(i)
-#         return
-
-# a1 = a()
-# b1 = b(a1)
-
-# b1.func(a1)
-# print(b1.obj.value)
+    
     pass
