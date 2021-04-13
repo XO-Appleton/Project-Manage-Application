@@ -19,7 +19,11 @@ class AnnouncementSubmissionScreen:
         print("\nANNOUNCEMENT SUBMISSION FORM: \n")
         creator = self.user.login_name
         date_created = str(date.today())
+
         title = str(input("Title of announcement? \n"))
+        while(title.isspace() or title == ''):
+            print("Title field is not optional.")
+            title = str(input("Title of announcement? \n"))
         body = str(input("\nBody of announcement? (Optional) \n"))
 
         # If user confirms they would like to post the announcement, it will be put in storage
