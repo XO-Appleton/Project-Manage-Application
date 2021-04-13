@@ -3,17 +3,17 @@ import json
 
 class BudgetDataSystem:
     
-    plan_storage_file_path = "./budget_plan_storage.json"
-    report_storage_file_path = "./budget_report_storage.json"
-    request_storage_file_path = "./budget_request_storage.json"
+    __plan_storage_file_path = "./budget_plan_storage.json"
+    __report_storage_file_path = "./budget_report_storage.json"
+    __request_storage_file_path = "./budget_request_storage.json"
 
     def __init__(self) -> None:
         #Get Budget plans, Expense Reports and Fund Requests from the storage files
-        with open(self.plan_storage_file_path, "r") as f:
+        with open(self.__plan_storage_file_path, "r") as f:
             self.plans = [BudgetPlan.from_dict(plan) for plan in json.load(f)]
-        with open(self.report_storage_file_path, "r") as f:
+        with open(self.__report_storage_file_path, "r") as f:
             self.reports = [ExpenseReport.from_dict(report) for report in json.load(f)]
-        with open(self.request_storage_file_path, "r") as f:
+        with open(self.__request_storage_file_path, "r") as f:
             self.requests = [FundRequest.from_dict(request) for request in json.load(f)]
 
         max_plan_id = 0
@@ -97,11 +97,11 @@ class BudgetDataSystem:
         self.reports = [report.to_dict() for report in self.reports]
         self.requests = [request.to_dict() for request in self.requests]
 
-        with open(self.plan_storage_file_path, "w") as f:
+        with open(self.__plan_storage_file_path, "w") as f:
             json.dump(self.plans, f)
-        with open(self.report_storage_file_path, "w") as f:
+        with open(self.__report_storage_file_path, "w") as f:
             json.dump(self.reports, f)
-        with open(self.request_storage_file_path, "w") as f:
+        with open(self.__request_storage_file_path, "w") as f:
             json.dump(self.requests, f)
 
     
