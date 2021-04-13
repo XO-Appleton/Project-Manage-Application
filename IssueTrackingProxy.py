@@ -12,11 +12,5 @@ class IssueTrackingProxy:
     def get_branch_name(self):
         return self.branch_name
 
-    def start_branch(self, project_id, user_id):
-        IssueController(project_id, user_id)
-
-
-pid = 1
-uid = 1
-test = IssueTrackingProxy()
-test.start_branch(pid, uid)
+    def start_branch(self, project, user):
+        IssueController(project.get_uid(), user)

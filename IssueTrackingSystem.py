@@ -15,7 +15,7 @@ class Issue:
 class IssueTrackingSystem:
     def sql_connect():
         try:
-            conn = sqlite3.connect(r"C:\Users\dbedn\se3a04_2020_2021_t2_g5\issue.db")
+            conn = sqlite3.connect("issue.db")
             return conn
         except Error:
             print(Error)
