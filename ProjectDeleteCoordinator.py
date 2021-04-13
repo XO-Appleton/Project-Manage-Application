@@ -22,5 +22,6 @@ class ProjectDeleteCoordinator:
     def delete_from_system(self, project: Project) -> None:
         self.database.delete_project(project)
 
+    @staticmethod
     def failure_to_verify() -> None:
         print('Sorry, only the project admin is privileged to delete a project.')
