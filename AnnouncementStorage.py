@@ -1,4 +1,5 @@
 import json
+from os.path import *
 
 
 class AnnouncementStorage:
@@ -23,11 +24,16 @@ class AnnouncementStorage:
 
     # Retrieve the announcements for a project from storage
     def get_announcements(self, project_id):
-        ann_json_file_read = open(AnnouncementStorage.storage_file_path, "r")
-        announcements = json.load(ann_json_file_read)
-        ann_json_file_read.close()
+        if not isfile(AnnouncementStorage.storage_file_path):
+            ann_json_file_write = open(
+                AnnouncementStorage.storage_file_path, "w")
+            json.dump({"system_announcement_id": 0}, ann_json_file_write)
 
         try:
+            ann_json_file_read = open(
+                AnnouncementStorage.storage_file_path, "r")
+            announcements = json.load(ann_json_file_read)
+            ann_json_file_read.close()
             return announcements[str(project_id)]
         except:
             pass
