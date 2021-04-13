@@ -33,7 +33,7 @@ class FeatureSelector:
             pass
         self.screen = FeatureSelectionScreen()
 
-    def start_branch_usage(self, project, user):
+    def start_branch_usage(self, project: Project, user: User):
         branch_names = [proxy.get_branch_name() for proxy in self.avail_proxy]
         self.screen.display_options(branch_names)
         branch_choice = self.screen.get_branch_choice()
