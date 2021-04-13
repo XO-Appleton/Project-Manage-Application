@@ -39,11 +39,12 @@ class BudgetModuleFunctionController:
         try:
             if cmd[0] == '':
                 raise IndexError
+            elif cmd[0] not in self.cmd_op:
+                raise TypeError
+            elif cmd[1] not in self.file_op:
+                raise SyntaxError
             else:
                 operation, file_type, opt_id = cmd[0], cmd[1], int(cmd[2])
-
-            if operation not in self.cmd_op:
-                raise TypeError
             
             #User choose to view a budget obj
             if operation == 'VIEW':
@@ -158,6 +159,8 @@ class BudgetModuleFunctionController:
 
         except TypeError:
             print('Invalid command')
+        except SyntaxError:
+            print('Invalid file type')
         except ValueError:
             #Handles situation where the budget file id entered by user is not found
             print('Id does not match an existing record')

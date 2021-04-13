@@ -13,8 +13,8 @@ class BudgetingProxy:
         return self.branch_name
 
     # Starts the branch using the main method in the Master Controller
-    def start_branch(project_id, user):
-        BudgetModuleFunctionController(project_id, user).initialize(project_id)
+    def start_branch(project, user):
+        BudgetModuleFunctionController(project, user).initialize(project)
         return
 
 if __name__=='__main__':
