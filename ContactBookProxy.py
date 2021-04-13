@@ -13,7 +13,7 @@ class ContactBookProxy:
     def start_branch(self, project, user):
 
         proj_admin = project.get_admin()
-        if proj_admin == user:
+        if proj_admin == user.get_user_ID():
             ContactBookController(project.get_uid(), 'admin').main()
         else:
             ContactBookController(project.get_uid(), 'user').main()
