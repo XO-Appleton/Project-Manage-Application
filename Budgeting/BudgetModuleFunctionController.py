@@ -26,6 +26,7 @@ class BudgetModuleFunctionController:
                 self.handle_event(cmd)
 
         #Handles 'back' command
+        #Too lazy to actually make an Exception class so I used AssertionError here :<
         except AssertionError:
             self.terminate()
 
@@ -163,6 +164,9 @@ class BudgetModuleFunctionController:
                     
                 
     def find_plan(self, plan_id) -> BudgetPlan:
+        #Find a plan in the local list.
+        #Not really serving any functions just making the code a little more compact.
+        #Same with the other two below.
         for plan in self.plans:
             if plan.plan_id == plan_id:
                 return plan
@@ -183,11 +187,14 @@ class BudgetModuleFunctionController:
         raise ValueError
 
     def update_plan(self, plan: BudgetPlan):
+        #Any changes regarding to plan/report/request is encoded into a for-replace budget plan
+        #and sent to the database.
         self.database.update_plan(plan)
         return
            
 
     def terminate(self):
+        #Clear the cache (sorta) and return to core program.
         self.plans = None
         self.user = None
         self.project_id = None

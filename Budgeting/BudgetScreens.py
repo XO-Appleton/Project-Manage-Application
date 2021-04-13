@@ -121,6 +121,9 @@ class BudgetPlanModificationScreen(Screen):
             if submit == 'y':
                 plan = dummy_plan
             return plan
+
+        #User can use ctrl+C to cancel a editing/creation. Any general exception is handled by the default case to avoid crashing.
+        #Same method used for all the structures below.
         except KeyboardInterrupt:
             raise KeyboardInterrupt
         except:
@@ -128,6 +131,7 @@ class BudgetPlanModificationScreen(Screen):
             return plan
 
     def capture_input(self) -> BudgetPlan:
+        #This is used for creation of objects as well.
         try:
             new_title = input('Enter the title: ')
             new_description = input('Enter the description: ')
@@ -139,6 +143,9 @@ class BudgetPlanModificationScreen(Screen):
             print('Something went wrong, Pls check ur input!')
 
     def get_plan_id(self):
+        #This is used to get user input on selecting a budget plan to add report/requests.
+        #Changed from what was proposed in deliverable 3 which is user can only choose to add a report/requests after viewing the plan
+        #to better adapt the command line environment.
         return int(input('Which plan do you want to add it on? '))
         
 

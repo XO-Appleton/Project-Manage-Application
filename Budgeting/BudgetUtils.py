@@ -1,3 +1,8 @@
+#This module is named budget but most of the function actually builds on the concept of fund management in a project setting.
+#The best intuition I can come up with is like buying something. The budget plan tracks how much money you are probably gonna spend (starting from 0 cash),
+#fund request is the process of taking cash from a ATM which requires a verifying process and the expense report serves as a recipt (Tracks what you spent on
+# and also takes cash from you)
+
 class BudgetPlan:
     #Budget Plan Object
 
@@ -77,6 +82,7 @@ class BudgetPlan:
         return
 
     def to_dict(self):
+        #Convert the Objects to dict type for json processing
         info = {
             'project_id': str(self.project_id),
             'plan_id': str(self.plan_id),

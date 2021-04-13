@@ -40,6 +40,7 @@ class BudgetDataSystem:
         FundRequest.num_request_created = max_request_id
 
     def find_project(self, project_id):
+        #Find all the budget plans under the identified project
         return [plan for plan in self.plans if plan.project_id == project_id]
 
     def delete_project(self, project_id):
@@ -56,10 +57,12 @@ class BudgetDataSystem:
         self.plans.append(plan)
 
     def update_plan(self, plan: BudgetPlan):
+        #This is used to update any changes on plan/report/request as the latter two belongs to the budget plan
         self.plans.remove(self.find_plan(plan.plan_id))
         self.plans.append(plan)
 
     def delete_plan(self, plan_id):
+        #Upon deleting a budget plan, all the reports and requests get deleted as well
         for report in self.find_plan(plan_id).reports:
             self.delete_report(plan_id, report.report_id)
         for request in self.find_plan(plan_id).requests:
@@ -87,7 +90,7 @@ class BudgetDataSystem:
                 self.requests.remove(request)
 
     def save(self):
-        #Get Budget plans, Expense Reports and Fund Requests from the storage files
+        #Save Budget plans, Expense Reports and Fund Requests to the storage files
         self.plans = [plan.to_dict() for plan in self.plans]
         self.reports = [report.to_dict() for report in self.reports]
         self.requests = [request.to_dict() for request in self.requests]
