@@ -3,14 +3,14 @@ from ProjectDataBase import *
 class ProjectDeleteCoordinator:
 
     def __init__(self) -> None:
-        self.database = ProjectDataBase()
+        self.database = ProjectDataBase.get_instance()
     
     def delete_project(self, project: Project, user: User) -> None:
-        if User != Project.get_admin:
+        if user.get_user_ID() != project.get_admin().get_user_ID():
             self.failure_to_verify()
             return
         
-        confirmation = input('Are you sure you want to delete Project {}? (y/n)'.format(project.get_uid)).upper()
+        confirmation = input('Are you sure you want to delete Project {}? (y/n)'.format(project.get_uid())).upper()
         
         if confirmation == 'Y':
             self.delete_from_system(project)
@@ -20,7 +20,7 @@ class ProjectDeleteCoordinator:
             return
 
     def delete_from_system(self, project: Project) -> None:
-        self.database.delete_project(project)
+        self.database.delete_project(project.get_uid())
 
     @staticmethod
     def failure_to_verify() -> None:
