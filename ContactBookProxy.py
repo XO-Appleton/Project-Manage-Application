@@ -13,7 +13,9 @@ class ContactBookProxy:
     def start_branch(self, project, user):
 
         proj_admin = project.get_admin()
-        if proj_admin == user.get_user_ID():
+        if proj_admin.get_user_ID() == user.get_user_ID():
+            print("Running as admin")
             ContactBookController(project.get_uid(), 'admin').main()
         else:
+            print("Running as user")
             ContactBookController(project.get_uid(), 'user').main()

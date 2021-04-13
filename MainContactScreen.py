@@ -1,6 +1,7 @@
 class MainContactScreen:
-    def __init__(self, contact_list):
+    def __init__(self, contact_list, user):
         self.contact_list = contact_list
+        self.user = user
 
     def display(self):
         print("\n****************************")
@@ -12,8 +13,8 @@ class MainContactScreen:
             print("ID: ", self.contact_list[c_id]['id'])
             print("Name: ", self.contact_list[c_id]['first_name'], self.contact_list[c_id]['last_name'])
             print("Details: ", self.contact_list[c_id]['details'])
-            # if current_user = admin:
-            print("Private Details: ", self.contact_list[c_id]['private_details'])
+            if self.user == 'admin':
+                print("Private Details: ", self.contact_list[c_id]['private_details'])
             print("------")
     
     def get_request(self):
