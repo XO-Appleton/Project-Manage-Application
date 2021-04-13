@@ -1,11 +1,13 @@
 from BudgetUtils import *
 from BudgetScreens import *
 from BudgetDataSystem import *
+from BudgetingProxy import *
 
 class BudgetModuleFunctionController:
 
-    def __init__(self, project_id: int, user):
-        self.project_id = project_id
+    def __init__(self, project, user):
+        self.project_id = project.get_project_uid()
+        self.is_admin = user.get_uid() == project.get_admin().get_user_id()
         self.user = user
         #Available operations and file types
         self.cmd_op = ['VIEW', 'CREATE', 'DELETE', 'EDIT', 'REVIEW', 'BACK']
@@ -13,11 +15,11 @@ class BudgetModuleFunctionController:
 
 
     def initialize(self, project_id):
-        self.main_screen = BudgetPlanMainScreen(True)
-        self.plan_view_screen = BudgetPlanViewScreen(True)
-        self.plan_mod_screen = BudgetPlanModificationScreen(True)
-        self.report_mod_screen = ExpenseReportModificationScreen(True)
-        self.request_mod_screen = FundRequestModificationScreen(True)
+        self.main_screen = BudgetPlanMainScreen(self.is_admin)
+        self.plan_view_screen = BudgetPlanViewScreen(self.is_admin)
+        self.plan_mod_screen = BudgetPlanModificationScreen(self.is_admin)
+        self.report_mod_screen = ExpenseReportModificationScreen(self.is_admin)
+        self.request_mod_screen = FundRequestModificationScreen(self.is_admin)
         self.database = BudgetDataSystem()
 
         self.plans = self.database.find_project(project_id)
@@ -204,6 +206,7 @@ class BudgetModuleFunctionController:
 
     def __terminate(self):
         #Clear the cache (sorta) and return to core program.
+        self.is_admin = False
         self.plans = None
         self.user = None
         self.project_id = None
