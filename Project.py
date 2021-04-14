@@ -18,6 +18,9 @@ class Project:
     def get_admin(self) -> User:
         return self.admin
 
+    def is_admin(self, user: User) -> bool:
+        return self.get_admin().get_user_ID() == user.get_user_ID()
+
     def __str__(self):
         return '''uid:\t%d
 name:\t%s
