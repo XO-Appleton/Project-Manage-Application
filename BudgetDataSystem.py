@@ -10,21 +10,21 @@ class BudgetDataSystem:
 
     def __init__(self) -> None:
 
-        # if not isfile(self.__plan_storage_file_path):
-        #     print("Did not find plan storage file, creating one...")
-        #     f = open(self.__plan_storage_file_path, "w")
-        #     json.dump(None, f)
-        #     f.close()
-        # if not isfile(self.__report_storage_file_path):
-        #     print("Did not find report storage file, creating one...")
-        #     f = open(self.__report_storage_file_path, "w")
-        #     json.dump(None, f)
-        #     f.close()
-        # if not isfile(self.__request_storage_file_path):
-        #     print("Did not find request storage file, creating one...")
-        #     f = open(self.__request_storage_file_path, "w")
-        #     json.dump(None, f)
-        #     f.close()
+        if not isfile(self.__plan_storage_file_path):
+            print("Did not find plan storage file, creating one...")
+            f = open(self.__plan_storage_file_path, "w")
+            json.dump([], f)
+            f.close()
+        if not isfile(self.__report_storage_file_path):
+            print("Did not find report storage file, creating one...")
+            f = open(self.__report_storage_file_path, "w")
+            json.dump([], f)
+            f.close()
+        if not isfile(self.__request_storage_file_path):
+            print("Did not find request storage file, creating one...")
+            f = open(self.__request_storage_file_path, "w")
+            json.dump([], f)
+            f.close()
 
 
         #Get Budget plans, Expense Reports and Fund Requests from the storage files

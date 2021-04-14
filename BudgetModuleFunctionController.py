@@ -33,8 +33,6 @@ class BudgetModuleFunctionController:
                 self.handle_event(cmd)
 
         #Handles 'back' command
-        #Too lazy to actually make an
-        # Exception class so I used AssertionError here :<
         except AssertionError:
             self.__terminate()
 
@@ -205,7 +203,7 @@ class BudgetModuleFunctionController:
            
 
     def __terminate(self):
-        #Clear the cache (sorta) and return to core program.
+        #Clear the cache (sort of) and return to core program.
         self.database.save()
         self.is_admin = False
         self.plans = None
