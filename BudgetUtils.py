@@ -154,4 +154,4 @@ class FundRequest:
 
     @classmethod
     def from_dict(cls, info):
-        return cls(int(info['plan_id']), int(info['request_id']), info['title'], info['description'], info['amount'], bool(info['approval']))
+        return cls(int(info['plan_id']), int(info['request_id']), info['title'], info['description'], info['amount'], info['approval']=='True')

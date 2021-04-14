@@ -26,6 +26,7 @@ class BudgetDataSystem:
             json.dump([], f)
             f.close()
 
+
         #Get Budget plans, Expense Reports and Fund Requests from the storage files
         with open(self.__plan_storage_file_path, "r") as f:
             self.plans = [BudgetPlan.from_dict(plan) for plan in json.load(f)]

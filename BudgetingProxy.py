@@ -16,7 +16,7 @@ class BudgetingProxy:
 
     # Starts the branch using the main method in the Master Controller
     def start_branch(self, project: Project, user: User):
-        BudgetModuleFunctionController(project, user).initialize(project)
+        BudgetModuleFunctionController(project, user).initialize(project.get_uid())
         return
 
 if __name__=='__main__':

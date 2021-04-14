@@ -6,6 +6,7 @@ from BudgetingProxy import *
 class BudgetModuleFunctionController:
 
     def __init__(self, project, user):
+        self.project = project
         self.project_id = project.get_uid()
         self.is_admin = user.get_user_ID() == project.get_admin().get_user_ID()
         self.user = user
@@ -15,11 +16,11 @@ class BudgetModuleFunctionController:
 
 
     def initialize(self, project_id):
-        self.main_screen = BudgetPlanMainScreen(self.is_admin)
-        self.plan_view_screen = BudgetPlanViewScreen(self.is_admin)
-        self.plan_mod_screen = BudgetPlanModificationScreen(self.is_admin)
-        self.report_mod_screen = ExpenseReportModificationScreen(self.is_admin)
-        self.request_mod_screen = FundRequestModificationScreen(self.is_admin)
+        self.main_screen = BudgetPlanMainScreen(self.project_id, self.is_admin)
+        self.plan_view_screen = BudgetPlanViewScreen(self.project_id, self.is_admin)
+        self.plan_mod_screen = BudgetPlanModificationScreen(self.project_id, self.is_admin)
+        self.report_mod_screen = ExpenseReportModificationScreen(self.project_id, self.is_admin)
+        self.request_mod_screen = FundRequestModificationScreen(self.project_id, self.is_admin)
         self.database = BudgetDataSystem()
 
         self.plans = self.database.find_project(project_id)
@@ -32,8 +33,6 @@ class BudgetModuleFunctionController:
                 self.handle_event(cmd)
 
         #Handles 'back' command
-        #Too lazy to actually make an
-        # Exception class so I used AssertionError here :<
         except AssertionError:
             self.__terminate()
 
@@ -43,8 +42,6 @@ class BudgetModuleFunctionController:
                 raise IndexError
             elif cmd[0] not in self.cmd_op:
                 raise TypeError
-            elif cmd[1] not in self.file_op:
-                raise SyntaxError
             else:
                 operation, file_type, opt_id = cmd[0], cmd[1], int(cmd[2])
             
@@ -72,6 +69,7 @@ class BudgetModuleFunctionController:
                 if file_type == 'PLAN':
                     crt_plan = self.plan_mod_screen.capture_input()
                     self.database.add_plan(crt_plan)
+                    print('Plan created!')
                     self.plans = self.database.find_project(self.project_id)
                      
                 elif file_type == 'REPORT':
@@ -205,12 +203,13 @@ class BudgetModuleFunctionController:
            
 
     def __terminate(self):
-        #Clear the cache (sorta) and return to core program.
+        #Clear the cache (sort of) and return to core program.
+        self.database.save()
         self.is_admin = False
         self.plans = None
         self.user = None
         self.project_id = None
-        self.database.save()
+        
 
 
 #Test
